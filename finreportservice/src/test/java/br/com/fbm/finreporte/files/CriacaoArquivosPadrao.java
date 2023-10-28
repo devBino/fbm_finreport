@@ -14,6 +14,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import br.com.fbm.finreporte.repository.files.FileUtils;
+import br.com.fbm.finreporte.repository.files.VerificaCriacaoArquivosServico;
 import br.com.fbm.finreporte.repository.type.FileApp;
 
 /**
@@ -89,8 +90,7 @@ public class CriacaoArquivosPadrao {
 	 * que serão implementadas
 	 */
 	private void invocarMetodosCriacao() {
-		//TODO BINO realizar chamada da rotina padrão que será usada durante
-		//inicialização da aplicação
+		VerificaCriacaoArquivosServico.checaExistenciaECriaArquivos();
 	}
 	
 	
