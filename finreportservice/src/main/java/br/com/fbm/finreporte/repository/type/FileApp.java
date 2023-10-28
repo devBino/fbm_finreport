@@ -15,6 +15,10 @@ package br.com.fbm.finreporte.repository.type;
  */
 public enum FileApp {
 
+	/**
+	 * Valores para diretórios e arquivos
+	 */
+	DIR_DATA("data"),
 	DIR_APP("finreporte"),
 	ATIVOS("ativos.txt"),
 	CONFIGS("configs.txt"),
@@ -22,6 +26,10 @@ public enum FileApp {
 	
 	String fileName;
 	
+	/**
+	 * Cria novo tipo de {@code FileApp}
+	 * @param pFileName
+	 */
 	FileApp(final String pFileName) {
 		fileName = pFileName;
 	}

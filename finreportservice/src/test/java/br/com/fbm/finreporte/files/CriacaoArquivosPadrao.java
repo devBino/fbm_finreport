@@ -19,7 +19,8 @@ import br.com.fbm.finreporte.repository.type.FileApp;
 /**
  * {@code CriacaoArquivosPadrao} realiza testes para conferir
  * se os arquivos foram criados nos diretórios padrões para
- * rodar a aplicação
+ * rodar a aplicação após executar rotinas de criação dos arquivos
+ * durante inicialização da aplicação
  * @author Fernando Bino Machado
  */
 public class CriacaoArquivosPadrao {
@@ -88,7 +89,9 @@ public class CriacaoArquivosPadrao {
 	 * que serão implementadas
 	 */
 	private void invocarMetodosCriacao() {
-		
+		//TODO BINO realizar chamada da rotina padrão que será usada durante
+		//inicialização da aplicação
 	}
+	
 	
 }
