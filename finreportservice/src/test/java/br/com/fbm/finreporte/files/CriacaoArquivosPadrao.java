@@ -1,9 +1,10 @@
 /**
- * Micro Framework para Processamento de Exercícios.
+ * Projeto Cliente/Serviço de captura de informações 
+ * de ativos financeiros.
  * 
  * Desenvolvido por: Fernando Bino Machado
  * Github: https://github.com/devBino
- * Projeto: https://github.com/devBino/fbm_ex_debug
+ * Projeto: https://github.com/devBino/fbm_finreport
  */
 package br.com.fbm.finreporte.files;
 
@@ -14,6 +15,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import br.com.fbm.finreporte.repository.files.FileUtils;
+import br.com.fbm.finreporte.repository.files.VerificaCriacaoArquivosServico;
 import br.com.fbm.finreporte.repository.type.FileApp;
 
 /**
@@ -89,8 +91,7 @@ public class CriacaoArquivosPadrao {
 	 * que serão implementadas
 	 */
 	private void invocarMetodosCriacao() {
-		//TODO BINO realizar chamada da rotina padrão que será usada durante
-		//inicialização da aplicação
+		VerificaCriacaoArquivosServico.checaExistenciaECriaArquivos();
 	}
 	
 	
