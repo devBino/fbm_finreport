@@ -1,8 +1,10 @@
 /**
- * {@code CriacaoArquivosPadrao} realiza testes para conferir
- * se os arquivos foram criados nos diretórios padrões para
- * rodar a aplicação
- * @author Fernando Bino Machado
+ * Projeto Cliente/Serviço de captura de informações 
+ * de ativos financeiros.
+ * 
+ * Desenvolvido por: Fernando Bino Machado
+ * Github: https://github.com/devBino
+ * Projeto: https://github.com/devBino/fbm_finreport
  */
 package br.com.fbm.finreporte.repository.files;
 

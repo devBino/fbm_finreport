@@ -1,9 +1,10 @@
 /**
- * Micro Framework para Processamento de Exercícios.
+ * Projeto Cliente/Serviço de captura de informações 
+ * de ativos financeiros.
  * 
  * Desenvolvido por: Fernando Bino Machado
  * Github: https://github.com/devBino
- * Projeto: https://github.com/devBino/fbm_ex_debug
+ * Projeto: https://github.com/devBino/fbm_finreport
  */
 package br.com.fbm.finreporte.repository.files;
 
