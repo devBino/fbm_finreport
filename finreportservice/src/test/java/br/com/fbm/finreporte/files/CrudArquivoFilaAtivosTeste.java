@@ -24,7 +24,7 @@ import br.com.fbm.finreporte.repository.type.FileApp;
 
 /**
  * Realiza testes de manipulação de linhas em arquivos
- * fila de ativos.
+ * de fila de ativos.
  * @author Fernando Bino Machado
  */
 public class CrudArquivoFilaAtivosTeste {
