@@ -8,6 +8,7 @@
  */
 package br.com.fbm.finreporte.business.generic;
 
+import br.com.fbm.finreporte.business.exception.BusinessException;
 import br.com.fbm.finreporte.business.service.FinReportService;
 
 /**
@@ -25,19 +26,19 @@ public class FinReportGeneric implements FinReportService {
 	}
 	
 	@Override
-	public void webScrapingInfo() {
+	public void webScrapingInfo() throws BusinessException {
 		// TODO Auto-generated method stub
 		
 	}
 	
 	@Override
-	public void realTimeInfo() {
+	public void realTimeInfo() throws BusinessException {
 		// TODO Auto-generated method stub
 		
 	}
 	
 	@Override
-	public void donwloads() {
+	public void donwloads() throws BusinessException {
 		// TODO Auto-generated method stub
 		
 	}
