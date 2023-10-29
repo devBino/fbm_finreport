@@ -30,7 +30,8 @@ public class FileManager {
 	 * @return
 	 * @throws Exception
 	 */
-	public static int nextId(final String pPath) throws Exception {
+	public synchronized static int nextId(final String pPath) 
+			throws Exception {
 		
 		//TODO BINO tratar exceções
 		final Path path = Paths.get(pPath);
@@ -56,7 +57,7 @@ public class FileManager {
 	 * @param pPath
 	 * @throws Exception
 	 */
-	public static void inserir(final String pLinha, 
+	public synchronized static void inserir(final String pLinha, 
 			final String pPath) throws Exception {
 		
 		//TODO BINO tratar exceções
@@ -86,7 +87,7 @@ public class FileManager {
 	 * @param pPath
 	 * @throws Exception
 	 */
-	public static void alterarLinha(final String pLinha,
+	public synchronized static void alterarLinha(final String pLinha,
 			final String pPath) throws Exception {
 		
 		//TODO BINO tratar exceções
@@ -125,7 +126,7 @@ public class FileManager {
 	 * @param pPath
 	 * @throws Exception
 	 */
-	public static void deletarLinha(final String pLinha,
+	public synchronized static void deletarLinha(final String pLinha,
 			final String pPath) throws Exception {
 		
 		//TODO BINO tratar exceções
@@ -156,7 +157,7 @@ public class FileManager {
 	 * @return
 	 * @throws Exception
 	 */
-	public static List<String> getLinhas(final String pPath) 
+	public synchronized static List<String> getLinhas(final String pPath) 
 			throws Exception {
 		
 		//TODO BINO tratar exceções
