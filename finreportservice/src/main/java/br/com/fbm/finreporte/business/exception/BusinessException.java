@@ -53,7 +53,7 @@ public class BusinessException extends Exception {
 	
 	@Override
 	public String getMessage() {
-		return erro.getMensagemErro( getCause().getMessage() );
+		return erro.getMensagemPersonalizadaErro( getCause().getMessage() );
 	}
 	
 }
