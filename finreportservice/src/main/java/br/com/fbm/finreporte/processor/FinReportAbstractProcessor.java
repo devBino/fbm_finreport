@@ -8,34 +8,37 @@
  */
 package br.com.fbm.finreporte.processor;
 
+import br.com.fbm.finreporte.business.exception.BusinessException;
+
 /**
  * {@code FinReportAbstractProcessor} define uma implementação abstrata de processamento
  * de ativos financeiros, baseada em {@code FinReportProcessorIface}
  * 
  * @author Fernando Bino Machado
  */
-public class FinReportAbstractProcessor implements FinReportProcessorIface {
+public class FinReportAbstractProcessor 
+	implements FinReportProcessorIface {
 
 	@Override
-	public boolean hasRegistro() {
+	public boolean hasRegistro() throws BusinessException {
 		// TODO Auto-generated method stub
 		return false;
 	}
 	
 	@Override
-	public void prepare() {
+	public void prepare() throws BusinessException {
 		// TODO Auto-generated method stub
 		
 	}
 	
 	@Override
-	public void processar() {
+	public void processar() throws BusinessException {
 		// TODO Auto-generated method stub
 		
 	}
 	
 	@Override
-	public void finalizar() {
+	public void finalizar() throws BusinessException {
 		// TODO Auto-generated method stub
 		
 	}

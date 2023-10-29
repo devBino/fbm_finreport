@@ -17,6 +17,9 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import br.com.fbm.finreporte.business.exception.BusinessException;
+import br.com.fbm.finreporte.repository.type.Erro;
+
 /**
  * {@code FileManager} manipula linhas em arquivos,
  * inserindo, alterando ou deletando linhas.
@@ -31,23 +34,28 @@ public class FileManager {
 	 * @throws Exception
 	 */
 	public synchronized static int nextId(final String pPath) 
-			throws Exception {
+			throws BusinessException {
 		
-		//TODO BINO tratar exceções
-		final Path path = Paths.get(pPath);
-
-		final List<String> linhas = Files.readAllLines(path);
+		try {
 		
-		int ultimaLinha = 1;
-		
-		if( linhas.isEmpty() ) {
-			return ultimaLinha;
+			final Path path = Paths.get(pPath);
+	
+			final List<String> linhas = Files.readAllLines(path);
+			
+			int ultimaLinha = 1;
+			
+			if( linhas.isEmpty() ) {
+				return ultimaLinha;
+			}
+			
+			String[] dadosUltimaLinha = linhas.get( linhas.size() - 1 ).split(";");
+			ultimaLinha = Integer.valueOf( dadosUltimaLinha[0] );
+			
+			return ++ultimaLinha;
+			
+		}catch(final Exception exception) {
+			throw new BusinessException(Erro.ERRO_MANIPULAR_ARQUIVO, exception);
 		}
-		
-		String[] dadosUltimaLinha = linhas.get( linhas.size() - 1 ).split(";");
-		ultimaLinha = Integer.valueOf( dadosUltimaLinha[0] );
-		
-		return ++ultimaLinha;
 		
 	}
 	
@@ -58,26 +66,31 @@ public class FileManager {
 	 * @throws Exception
 	 */
 	public synchronized static void inserir(final String pLinha, 
-			final String pPath) throws Exception {
+			final String pPath) throws BusinessException {
 		
-		//TODO BINO tratar exceções
-		final Path path = Paths.get(pPath);
+		try {
 		
-		final File file = new File(pPath);
-		
-		final List<String> linhasArquivo = Files.readAllLines(path);
-		
-		linhasArquivo.add(new StringBuilder()
-				.append(nextId(pPath))
-				.append(";")
-				.append(pLinha)
-				.toString());
-		
-		if( file.exists() ) {
-			file.delete();
+			final Path path = Paths.get(pPath);
+			
+			final File file = new File(pPath);
+			
+			final List<String> linhasArquivo = Files.readAllLines(path);
+			
+			linhasArquivo.add(new StringBuilder()
+					.append(nextId(pPath))
+					.append(";")
+					.append(pLinha)
+					.toString());
+			
+			if( file.exists() ) {
+				file.delete();
+			}
+			
+			Files.write(path, linhasArquivo);
+			
+		}catch(final Exception exception) {
+			throw new BusinessException(Erro.ERRO_MANIPULAR_ARQUIVO, exception);
 		}
-		
-		Files.write(path, linhasArquivo);
 		
 	}
 	
@@ -88,35 +101,40 @@ public class FileManager {
 	 * @throws Exception
 	 */
 	public synchronized static void alterarLinha(final String pLinha,
-			final String pPath) throws Exception {
+			final String pPath) throws BusinessException {
 		
-		//TODO BINO tratar exceções
-		final Path path = Paths.get(pPath);
+		try {
 		
-		final File file = new File(pPath);
-		
-		final String idLinha = pLinha.split(";")[0];
-		
-		final Function<String, String> fn = ln -> {
+			final Path path = Paths.get(pPath);
 			
-			if( ln.startsWith(idLinha) ) {
-				return pLinha;
+			final File file = new File(pPath);
+			
+			final String idLinha = pLinha.split(";")[0];
+			
+			final Function<String, String> fn = ln -> {
+				
+				if( ln.startsWith(idLinha) ) {
+					return pLinha;
+				}
+				
+				return ln;
+				
+			};
+			
+			final List<String> linhasArquivo = Files.readAllLines(path)
+					.stream()
+					.map(fn)
+					.collect(Collectors.toList());
+			
+			if( file.exists() ) {
+				file.delete();
 			}
 			
-			return ln;
+			Files.write(path, linhasArquivo);
 			
-		};
-		
-		final List<String> linhasArquivo = Files.readAllLines(path)
-				.stream()
-				.map(fn)
-				.collect(Collectors.toList());
-		
-		if( file.exists() ) {
-			file.delete();
+		}catch(final Exception exception) {
+			throw new BusinessException(Erro.ERRO_MANIPULAR_ARQUIVO, exception);
 		}
-		
-		Files.write(path, linhasArquivo);
 				
 	}
 	
@@ -127,27 +145,32 @@ public class FileManager {
 	 * @throws Exception
 	 */
 	public synchronized static void deletarLinha(final String pLinha,
-			final String pPath) throws Exception {
+			final String pPath) throws BusinessException {
 		
-		//TODO BINO tratar exceções
-		final Path path = Paths.get(pPath);
+		try {
 		
-		final File file = new File(pPath);
-		
-		final String idLinha = pLinha.split(";")[0];
-		
-		final Predicate<String> ft = ln -> !ln.startsWith(idLinha);
-		
-		final List<String> linhasArquivo = Files.readAllLines(path)
-				.stream()
-				.filter(ft)
-				.collect(Collectors.toList());
-		
-		if( file.exists() ) {
-			file.delete();
+			final Path path = Paths.get(pPath);
+			
+			final File file = new File(pPath);
+			
+			final String idLinha = pLinha.split(";")[0];
+			
+			final Predicate<String> ft = ln -> !ln.startsWith(idLinha);
+			
+			final List<String> linhasArquivo = Files.readAllLines(path)
+					.stream()
+					.filter(ft)
+					.collect(Collectors.toList());
+			
+			if( file.exists() ) {
+				file.delete();
+			}
+			
+			Files.write(path, linhasArquivo);
+			
+		}catch(final Exception exception) {
+			throw new BusinessException(Erro.ERRO_MANIPULAR_ARQUIVO, exception);
 		}
-		
-		Files.write(path, linhasArquivo);
 		
 	}
 	
@@ -158,12 +181,17 @@ public class FileManager {
 	 * @throws Exception
 	 */
 	public synchronized static List<String> getLinhas(final String pPath) 
-			throws Exception {
+			throws BusinessException {
 		
-		//TODO BINO tratar exceções
-		final Path path = Paths.get(pPath);
+		try {
 		
-		return Files.readAllLines(path);
+			final Path path = Paths.get(pPath);
+			
+			return Files.readAllLines(path);
+			
+		}catch(final Exception exception) {
+			throw new BusinessException(Erro.ERRO_MANIPULAR_ARQUIVO, exception);
+		}
 		
 	}
 	

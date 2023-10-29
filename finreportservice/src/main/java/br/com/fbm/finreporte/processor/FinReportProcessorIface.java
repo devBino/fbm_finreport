@@ -8,6 +8,8 @@
  */
 package br.com.fbm.finreporte.processor;
 
+import br.com.fbm.finreporte.business.exception.BusinessException;
+
 /**
  * {@code FinReportProcessorIface} define as etapas 
  * de processamento de um ativo financeiro
@@ -19,24 +21,24 @@ public interface FinReportProcessorIface {
 	 * Verifica se existe um registro no inicio da fila
 	 * @return
 	 */
-	boolean hasRegistro();
+	boolean hasRegistro() throws BusinessException;
 	
 	/**
 	 * Retira o registro do inicio da fila e prepara
 	 * para processamento
 	 */
-	void prepare();
+	void prepare() throws BusinessException;
 	
 	/**
 	 * Processa o registro
 	 */
-	void processar();
+	void processar() throws BusinessException;
 	
 	/**
 	 * Finaliza o processo, atualizando fila
 	 * e atualizando informações recuperadas do registro
 	 * processado
 	 */
-	void finalizar();
+	void finalizar() throws BusinessException;
 	
 }

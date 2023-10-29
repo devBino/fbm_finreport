@@ -8,6 +8,8 @@
  */
 package br.com.fbm.finreporte.business.service;
 
+import br.com.fbm.finreporte.business.exception.BusinessException;
+
 /**
  * {@code FinReportService} define regras para processamento
  * de ativos financeiros
@@ -25,17 +27,17 @@ public interface FinReportService {
 	 * Recupera informações via web scraping
 	 * de uma ou mais urls
 	 */
-	void webScrapingInfo();
+	void webScrapingInfo() throws BusinessException;
 	
 	/**
 	 * Consome alguma API definida para informações real time
 	 */
-	void realTimeInfo();
+	void realTimeInfo() throws BusinessException;
 	
 	/**
 	 * Realiza donwloads de documentos de uma 
 	 * ou mais urls defindas
 	 */
-	void donwloads();
+	void donwloads() throws BusinessException;
 	
 }
