@@ -15,26 +15,55 @@ package br.com.fbm.finreporte.repository.type;
  */
 public enum Erro {
 
+	/**
+	 * Erros personalizados para {@code BusinessException}
+	 */
 	ERRO_DESCONHECIDO((byte)1, "Erro desconhecido"),
 	ERRO_MANIPULAR_ARQUIVO((byte)2,"Erro ao manipular o arquivo");
 	
+	/**
+	 * Define o código do erro
+	 */
 	byte code;
+	
+	/**
+	 * Define a mensagem do erro
+	 */
 	String mensagem;
 	
+	/**
+	 * Instancia um tipo de {@code Erro}
+	 * @param pCode
+	 * @param pMensagem
+	 */
 	Erro(final byte pCode, final String pMensagem){
 		code = pCode;
 		mensagem = pMensagem;
 	}
 	
+	/**
+	 * Retorna o codigo do erro
+	 * @return
+	 */
 	public byte getCode() {
 		return code;
 	}
 	
+	/**
+	 * Retorna a mensagem do erro
+	 * @return
+	 */
 	public String getMensagem() {
 		return mensagem;
 	}
 	
-	public String getMensagemErro(final String pMensagemEx) {
+	/**
+	 * Recebe uma mensagem de um {@code Throwable} 
+	 * e compila e retorna uma mensagem personalizada
+	 * @param pMensagemEx
+	 * @return
+	 */
+	public String getMensagemPersonalizadaErro(final String pMensagemEx) {
 		
 		return new StringBuilder()
 				.append("[")
