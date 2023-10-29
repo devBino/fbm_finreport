@@ -19,6 +19,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.BeforeClass;
 
+import br.com.fbm.finreporte.repository.files.FileManager;
 import br.com.fbm.finreporte.repository.files.FileUtils;
 import br.com.fbm.finreporte.repository.type.FileApp;
 
@@ -46,59 +47,71 @@ public class CrudArquivoConfigsTeste {
 	}
 	
 	@Test
-	public void inserirLinhaArquivoConfigs() throws Exception {
+	public void testesArquivoConfigs() throws Exception {
+		
+		Assert.assertTrue("Inserindo Linhas Arquivo Configs", inserirLinhaArquivoConfigs());
+		Assert.assertTrue("Alterando Linhas Arquivo Configs", atualizarLinhaArquivoConfigs());
+		Assert.assertTrue("Deltando Linhas Arquivo Configs", deletarLinhaArquivoConfigs());
+		
+	}
+	
+	private boolean inserirLinhaArquivoConfigs() throws Exception {
 	
 		final Path path = Paths.get( pathArquivoConfigs.toString() );
-		//TODO BINO chamar rotina de inserção de linha no arquivo
+		
+		FileManager.inserir("confi1;true", pathArquivoConfigs.toString());
+		FileManager.inserir("confi2;false", pathArquivoConfigs.toString());
+		FileManager.inserir("confi3;true", pathArquivoConfigs.toString());
+		
 		final boolean hasLinhas = !Files.readAllLines(path).isEmpty();
 	
-		Assert.assertTrue(hasLinhas);
+		return hasLinhas;
 		
 	}
 	
-	@Test
-	public void atualizarLinhaArquivoAtivos() throws Exception {
+	private boolean atualizarLinhaArquivoConfigs() throws Exception {
 		
-		final String ativo = "2;consumir_apis;false";
+		final String config = "2;confi20;true";
+		
 		final Path path = Paths.get( pathArquivoConfigs.toString() );
 		
-		//TODO BINO chamar rotina para alterar a linha no arquivo
+		FileManager.alterarLinha(config, pathArquivoConfigs.toString());
 		
 		final List<String> linhas = Files.readAllLines(path);
 		
 		final Predicate<String> testeConfigEncontrada = at -> at
 				.toLowerCase()
-				.equals( ativo.toLowerCase() );
+				.equals( config.toLowerCase() );
 		
 		final Optional<String> existeConfig = linhas
 				.stream()
 				.filter(testeConfigEncontrada)
 				.findFirst();
 		
-		Assert.assertTrue( existeConfig.isPresent() );
+		return existeConfig.isPresent();
 		
 	}
 	
-	@Test
-	public void deletarLinhaArquivoAtivos() throws Exception {
+	private boolean deletarLinhaArquivoConfigs() throws Exception {
 		
-		final String ativo = "3;tempo_cache;120";
+		final String config = "1;confi1;true";
+		
 		final Path path = Paths.get( pathArquivoConfigs.toString() );
 		
-		//TODO BINO chamar rotina para deletar linha no arquivo
+		FileManager.deletarLinha(config, pathArquivoConfigs.toString());
 		
 		final List<String> linhas = Files.readAllLines(path);
 		
 		final Predicate<String> testeConfigEncontrada = at -> at
 				.toLowerCase()
-				.equals( ativo.toLowerCase() );
+				.equals( config.toLowerCase() );
 		
 		final Optional<String> existeConfig = linhas
 				.stream()
 				.filter(testeConfigEncontrada)
 				.findFirst();
 		
-		Assert.assertTrue( !existeConfig.isPresent() );
+		return !existeConfig.isPresent();
 		
 	}
 	
