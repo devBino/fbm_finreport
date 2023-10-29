@@ -19,6 +19,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.BeforeClass;
 
+import br.com.fbm.finreporte.repository.files.FileManager;
 import br.com.fbm.finreporte.repository.files.FileUtils;
 import br.com.fbm.finreporte.repository.type.FileApp;
 
@@ -46,23 +47,34 @@ public class CrudArquivoAtivosTeste {
 	}
 	
 	@Test
-	public void inserirLinhaArquivoAtivos() throws Exception {
-	
-		final Path path = Paths.get( pathArquivoAtivos.toString() );
-		//TODO BINO chamar rotina de inserção de linha no arquivo
-		final boolean hasLinhas = !Files.readAllLines(path).isEmpty();
-	
-		Assert.assertTrue(hasLinhas);
+	public void testesArquivoAtivos() throws Exception {
+		
+		Assert.assertTrue("Inserindo Linhas Arquivo Ativos", inserirLinhaArquivoAtivos());
+		Assert.assertTrue("Alterando Linhas Arquivo Ativos", atualizarLinhaArquivoAtivos());
+		Assert.assertTrue("Deltando Linhas Arquivo Ativos", deletarLinhaArquivoAtivos());
 		
 	}
 	
-	@Test
-	public void atualizarLinhaArquivoAtivos() throws Exception {
+	private boolean inserirLinhaArquivoAtivos() throws Exception {
+	
+		final Path path = Paths.get( pathArquivoAtivos.toString() );
+		
+		FileManager.inserir("knri11", pathArquivoAtivos.toString());
+		FileManager.inserir("hsml11", pathArquivoAtivos.toString());
+		FileManager.inserir("xplg11", pathArquivoAtivos.toString());
+		
+		final boolean hasLinhas = !Files.readAllLines(path).isEmpty();
+	
+		return hasLinhas;
+		
+	}
+	
+	private boolean atualizarLinhaArquivoAtivos() throws Exception {
 		
 		final String ativo = "2;tgar11";
 		final Path path = Paths.get( pathArquivoAtivos.toString() );
 		
-		//TODO BINO chamar rotina para alterar a linha no arquivo
+		FileManager.alterarLinha(ativo, pathArquivoAtivos.toString());
 		
 		final List<String> linhas = Files.readAllLines(path);
 		
@@ -75,17 +87,16 @@ public class CrudArquivoAtivosTeste {
 				.filter(testeAtivoEncontrado)
 				.findFirst();
 		
-		Assert.assertTrue( existeAtivo.isPresent() );
+		return existeAtivo.isPresent();
 		
 	}
 	
-	@Test
-	public void deletarLinhaArquivoAtivos() throws Exception {
+	private boolean deletarLinhaArquivoAtivos() throws Exception {
 		
-		final String ativo = "3;bcff11";
+		final String ativo = "1;knri11";
 		final Path path = Paths.get( pathArquivoAtivos.toString() );
 		
-		//TODO BINO chamar rotina para deletar linha no arquivo
+		FileManager.deletarLinha(ativo, pathArquivoAtivos.toString());
 		
 		final List<String> linhas = Files.readAllLines(path);
 		
@@ -98,7 +109,7 @@ public class CrudArquivoAtivosTeste {
 				.filter(testeAtivoEncontrado)
 				.findFirst();
 		
-		Assert.assertTrue( !existeAtivo.isPresent() );
+		return !existeAtivo.isPresent();
 		
 	}
 	
