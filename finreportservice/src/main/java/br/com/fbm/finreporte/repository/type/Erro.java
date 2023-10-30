@@ -18,8 +18,9 @@ public enum Erro {
 	/**
 	 * Erros personalizados para {@code BusinessException}
 	 */
-	ERRO_DESCONHECIDO((byte)1, "Erro desconhecido"),
-	ERRO_MANIPULAR_ARQUIVO((byte)2,"Erro ao manipular o arquivo");
+	ERRO_DESCONHECIDO( (byte)1, "Erro desconhecido"),
+	ERRO_LINHA_ARQUIVO( (byte)2, "Erro ao aplicar linha do arquivo no objeto BO"),
+	ERRO_MANIPULAR_ARQUIVO( (byte)3,"Erro ao manipular o arquivo");
 	
 	/**
 	 * Define o código do erro

@@ -19,9 +19,8 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import br.com.fbm.finreporte.repository.FileTestRepository;
 import br.com.fbm.finreporte.repository.files.FileManager;
-import br.com.fbm.finreporte.repository.files.FileUtils;
-import br.com.fbm.finreporte.repository.type.FileApp;
 
 /**
  * Realiza testes de manipulação de linhas em arquivos
@@ -34,16 +33,7 @@ public class CrudArquivoFilaAtivosTeste {
 	
 	@BeforeClass
 	public static void definePathFile() {
-		
-		final StringBuilder basePath = new StringBuilder()
-				.append( FileUtils.getHomePath() )
-				.append("data/finreport/");
-		
-		pathArquivoFilaAtivos = new StringBuilder()
-				.append(basePath.toString())
-				.append(FileApp.FILA_ATIVOS.getFileName())
-				.toString();
-		
+		pathArquivoFilaAtivos = FileTestRepository.getPathArquivoFilaAtivos();
 	}
 	
 	@Test

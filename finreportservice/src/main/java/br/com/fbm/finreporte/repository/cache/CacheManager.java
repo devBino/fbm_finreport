@@ -30,6 +30,15 @@ public class CacheManager {
 	}
 	
 	/**
+	 * Retorna dados do ativo salvo em cache
+	 * @param pTicker
+	 * @return
+	 */
+	public Map<String, String> getDadosTickerCache(final String pTicker){
+		return ativosInfoCache.getInfoAtivos().get(pTicker);
+	}
+	
+	/**
 	 * Adiciona informações de um ticker em cache
 	 * @param pTicker
 	 * @param pMapInfo
