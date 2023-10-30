@@ -16,12 +16,11 @@ import java.util.Optional;
 import java.util.function.Predicate;
 
 import org.junit.Assert;
-import org.junit.Test;
 import org.junit.BeforeClass;
+import org.junit.Test;
 
+import br.com.fbm.finreporte.repository.FileTestRepository;
 import br.com.fbm.finreporte.repository.files.FileManager;
-import br.com.fbm.finreporte.repository.files.FileUtils;
-import br.com.fbm.finreporte.repository.type.FileApp;
 
 /**
  * Realiza testes de manipulação de linhas em arquivos
@@ -34,16 +33,7 @@ public class CrudArquivoAtivosTeste {
 	
 	@BeforeClass
 	public static void definePathFile() {
-		
-		final StringBuilder basePath = new StringBuilder()
-				.append( FileUtils.getHomePath() )
-				.append("data/finreport/");
-		
-		pathArquivoAtivos = new StringBuilder()
-				.append(basePath.toString())
-				.append(FileApp.ATIVOS.getFileName())
-				.toString();
-		
+		pathArquivoAtivos = FileTestRepository.getPathArquivoAtivos();
 	}
 	
 	@Test

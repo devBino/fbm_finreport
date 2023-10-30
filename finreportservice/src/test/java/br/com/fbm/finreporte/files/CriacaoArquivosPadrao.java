@@ -14,9 +14,8 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import br.com.fbm.finreporte.repository.files.FileUtils;
+import br.com.fbm.finreporte.repository.FileTestRepository;
 import br.com.fbm.finreporte.repository.files.VerificaCriacaoArquivosServico;
-import br.com.fbm.finreporte.repository.type.FileApp;
 
 /**
  * {@code CriacaoArquivosPadrao} realiza testes para conferir
@@ -32,24 +31,9 @@ public class CriacaoArquivosPadrao {
 	@BeforeClass
 	public static void definePathFile() {
 		
-		final StringBuilder basePath = new StringBuilder()
-				.append( FileUtils.getHomePath() )
-				.append("data/finreport/");
-		
-		pathArquivoFilaAtivos = new StringBuilder()
-				.append(basePath.toString())
-				.append(FileApp.FILA_ATIVOS.getFileName())
-				.toString();
-		
-		pathArquivoAtivos = new StringBuilder()
-				.append(basePath.toString())
-				.append(FileApp.ATIVOS.getFileName())
-				.toString();
-		
-		pathArquivoConfigs = new StringBuilder()
-				.append(basePath.toString())
-				.append(FileApp.CONFIGS.getFileName())
-				.toString();
+		pathArquivoFilaAtivos = FileTestRepository.getPathArquivoFilaAtivos();
+		pathArquivoAtivos = FileTestRepository.getPathArquivoAtivos();
+		pathArquivoConfigs = FileTestRepository.getPathArquivoConfigs();
 		
 	}
 	
