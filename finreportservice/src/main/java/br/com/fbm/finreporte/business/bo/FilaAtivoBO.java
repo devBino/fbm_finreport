@@ -18,9 +18,22 @@ import br.com.fbm.finreporte.repository.type.Erro;
  */
 public class FilaAtivoBO {
 
+	/**
+	 * Define o id do registro de ativo
+	 */
 	private int id;
+	
+	/**
+	 * Define o ticker do ativo
+	 */
 	private String ticker;
 	
+	/**
+	 * Recebe uma linha do arquivo fila de ativos
+	 * e cria uma nova instância de {@code FilaAtivoBO}
+	 * @param pLinhaArquivo
+	 * @throws BusinessException
+	 */
 	public FilaAtivoBO(final String pLinhaArquivo)
 		throws BusinessException {
 		
@@ -32,11 +45,20 @@ public class FilaAtivoBO {
 		
 	}
 	
+	/**
+	 * Cria nova instância de {@code FilaAtivoBO}
+	 * recebendo os parâmetros
+	 * @param id
+	 * @param ticker
+	 */
 	public FilaAtivoBO(int id, String ticker) {
 		this.id = id;
 		this.ticker = ticker;
 	}
 	
+	/**
+	 * Abaixo métodos getters e setters
+	 */
 	public int getId() {
 		return id;
 	}
@@ -53,6 +75,12 @@ public class FilaAtivoBO {
 		this.ticker = ticker;
 	}
 	
+	/**
+	 * Recebe uma linha do arquivo de fila ativos e 
+	 * popula os atributos dessa instância
+	 * @param pLinhaArquivo
+	 * @throws Exception
+	 */
 	private void popularCampos(final String pLinhaArquivo)
 		throws Exception {
 		

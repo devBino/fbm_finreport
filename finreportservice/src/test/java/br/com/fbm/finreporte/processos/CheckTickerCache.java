@@ -17,8 +17,9 @@ import br.com.fbm.finreporte.constants.FinReportTestConstants;
 import br.com.fbm.finreporte.repository.cache.CacheManager;
 
 /**
+ * {@code CheckTickerCache} testa se os dados do ticker 
+ * foram capturados e salvos em cache
  * @author Fernando Bino Machado
- *
  */
 public class CheckTickerCache {
 

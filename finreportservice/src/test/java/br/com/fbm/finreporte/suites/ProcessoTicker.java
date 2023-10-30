@@ -16,6 +16,7 @@ import br.com.fbm.finreporte.files.CriacaoArquivosPadrao;
 import br.com.fbm.finreporte.processos.CheckTickerCache;
 import br.com.fbm.finreporte.processos.InsereTickerFila;
 import br.com.fbm.finreporte.processos.ProcessaTickerInfo;
+import br.com.fbm.finreporte.processos.SimulaInicioServico;
 
 /**
  * {@code ProcessoTicker} agrupa testes no cenário
@@ -25,6 +26,7 @@ import br.com.fbm.finreporte.processos.ProcessaTickerInfo;
 @RunWith(Suite.class)
 @SuiteClasses({
 	CriacaoArquivosPadrao.class,
+	SimulaInicioServico.class,
 	InsereTickerFila.class,
 	ProcessaTickerInfo.class,
 	CheckTickerCache.class

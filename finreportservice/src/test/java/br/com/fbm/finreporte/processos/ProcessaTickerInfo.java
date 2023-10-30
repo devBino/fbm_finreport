@@ -21,6 +21,9 @@ import br.com.fbm.finreporte.repository.FileTestRepository;
 import br.com.fbm.finreporte.repository.files.FileManager;
 
 /**
+ * {@code ProcessaTickerInfo} executa o teste que 
+ * checa se o ticker saiu da fila de processamento
+ * após chamar a rotina de processamento
  * @author Fernando Bino Machado
  */
 public class ProcessaTickerInfo {
@@ -67,5 +70,6 @@ public class ProcessaTickerInfo {
 		verificaTickerNaoPresenteFila(linhas);
 		
 	}
+	
 	
 }
